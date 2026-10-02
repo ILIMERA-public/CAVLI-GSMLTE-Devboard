@@ -116,7 +116,7 @@ AT command reference (Turkish, commands are universal): [docs/AT_KOMUTLARI.md](d
 - Manufacturer documents (C16QS AT Command Manual, Hardware Manual):
   [Cavli product and solution guides](https://www.cavliwireless.com/resources/product-and-solution-guides)
 - General introduction to AT commands: [Cavli — An Introduction to Cellular AT Commands](https://www.cavliwireless.com/blog/nerdiest-of-things/an-introduction-to-cellular-at-commands)
-- Documentation, updates and support: [ilimera.com](https://ilimera.com/en/urunler/gelistirme-kartlari/gsm-lte-devboard) · info@ilimera.com
+- Documentation, updates and support: [ilimera.com](https://ilimera.com/en/urunler/gelistirme-kartlari/gsm-lte-devboard)
 - Open an **Issue** in this repository for bugs and suggestions.
 
 Want HTTPS without writing AT commands? [İLİMERA LTE Bridge](https://ilimera.com/en/urunler/gelistirme-kartlari/lte-bridge)

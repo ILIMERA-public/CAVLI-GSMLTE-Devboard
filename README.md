@@ -136,7 +136,7 @@ Daha fazlası: [AT komut başvurusu](docs/AT_KOMUTLARI.md).
 - Üretici belgeleri (C16QS AT Command Manual, Hardware Manual):
   [Cavli ürün ve çözüm kılavuzları](https://www.cavliwireless.com/resources/product-and-solution-guides)
 - AT komutlarına genel giriş: [Cavli — An Introduction to Cellular AT Commands](https://www.cavliwireless.com/blog/nerdiest-of-things/an-introduction-to-cellular-at-commands)
-- Teknik doküman, güncellemeler ve destek: [ilimera.com](https://ilimera.com/urunler/gelistirme-kartlari/gsm-lte-devboard) · info@ilimera.com
+- Teknik doküman, güncellemeler ve destek: [ilimera.com](https://ilimera.com/urunler/gelistirme-kartlari/gsm-lte-devboard)
 - Hata bildirimi ve öneriler için bu depoda **Issue** açabilirsiniz.
 
 AT komutu yazmadan HTTPS ile internete çıkmak isterseniz:

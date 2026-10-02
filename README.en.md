@@ -14,9 +14,9 @@ This repository covers both versions:
 | Version | Difference | Technical document (Turkish) |
 | --- | --- | --- |
 | **CAVLI GSM/LTE Devboard** | 4G LTE | [PDF](docs/CAVLI_GSMLTE_teknik_dokuman_v2.pdf) |
-| **CAVLI GSM/LTE Devboard with built-in GPS** | 4G LTE + built-in GPS (GNSS) | [PDF](docs/CAVLI_GSMLTE_GPS_teknik_dokuman_v1.pdf) |
+| **CAVLI GSM/LTE Devboard with built-in GPS** | 4G LTE + built-in GPS (GNSS) | [PDF](docs/CAVLI_GSMLTE_GPS_teknik_dokuman_v2.pdf) |
 
-Everything except the GPS example (`05_GPS_Konum_Okuma`) applies to both versions.
+Everything except the GNSS (GPS) commands applies to both versions.
 
 ## Specifications
 
@@ -44,17 +44,8 @@ Everything except the GPS example (`05_GPS_Konum_Okuma`) applies to both version
 | PKY | Input | A GPIO: modem power on/off pulse |
 | RST | Input | (Optional) a GPIO: active-low hardware reset |
 
-ESP32 DevKit wiring used in the examples:
-
-```text
-CAVLI TX  → ESP32 GPIO16      CAVLI PKY → ESP32 GPIO4
-CAVLI RX  ← ESP32 GPIO17      CAVLI GND → ESP32 GND
-CAVLI 3V3 ← external 3.3 V / 2 A regulator  (the ESP32 board's 3V3 pin is not enough)
-```
-
-Change pins in the **KULLANICI AYARLARI** (user settings) block at the top of each sketch. If the modem does not
-answer `AT` at start-up, the examples send a 500 ms pulse on PKY; if it still does not start, swap the
-`PKY_BASILI` / `PKY_SERBEST` values.
+Feed 3V3 from a separate regulator capable of 2 A peaks, not from the controller board's own 3V3 pin. If the
+modem does not answer `AT` at start-up, send a short power-on pulse on PKY.
 
 ## Power and logic level
 
@@ -67,9 +58,8 @@ answer `AT` at start-up, the examples send a 500 ms pulse on PKY; if it still do
 ## Quick start
 
 1. Insert the Nano SIM, attach the LTE antenna, wire the board to your controller.
-2. Install the ESP32 package in the Arduino IDE and upload
-   [`examples/01_AT_Komut_Terminali`](examples/01_AT_Komut_Terminali).
-3. Open the Serial Monitor at **115200 baud, Both NL & CR** and try:
+2. Connect TX/RX to your controller's serial port, or to a PC through a 3.3 V USB-TTL adapter.
+3. Open a serial terminal at **115200 baud, CR+LF line endings** and try:
 
 ```text
 AT            → OK
@@ -79,23 +69,14 @@ AT+CSQ        → +CSQ: 24,99 (10 or more is good)
 AT+CEREG?     → +CEREG: 0,1 (registered)
 ```
 
-4. Then move on to [`src/main.cpp`](src/main.cpp) (HTTP GET) or the other examples.
+4. Then move on to [`src/main.cpp`](src/main.cpp) (HTTP GET). More commands:
+   [AT command reference](docs/AT_KOMUTLARI.md).
 
-## Examples
+## Example code
 
-| Example | What it does |
-| --- | --- |
-| [`src/main.cpp`](src/main.cpp) | **R&D reference example** (PlatformIO, ESP32-C3): powers the modem, waits for SIM and network, opens the data context and performs an HTTP GET |
-| [01_AT_Komut_Terminali](examples/01_AT_Komut_Terminali) | AT command terminal from the Serial Monitor |
-| [02_HTTP_POST_JSON](examples/02_HTTP_POST_JSON) | HTTP POST with a JSON body every 60 s |
-| [03_SMS_Gonder_ve_Al](examples/03_SMS_Gonder_ve_Al) | Sends SMS; SMS commands from an authorised number switch an output |
-| [04_MQTT_Yayinla_Abone_Ol](examples/04_MQTT_Yayinla_Abone_Ol) | Publishes telemetry and subscribes to a command topic with the modem's built-in MQTT client |
-| [05_GPS_Konum_Okuma](examples/05_GPS_Konum_Okuma) | **GPS version:** reads position, speed and UTC time, prints a Google Maps link |
-
-`src/main.cpp` is a PlatformIO project (`pio run -t upload`); adjust `MODEM_TX_PIN`, `MODEM_RX_PIN` and
-`MODEM_PWRKEY_PIN` to your circuit. The sketches in `examples/` open directly in the Arduino IDE and need no
-extra libraries. The code ports to any 3.3 V controller: only the serial port and pin definitions change.
-Code comments are in Turkish with an English summary in each header.
+[`src/main.cpp`](src/main.cpp) (PlatformIO, ESP32-C3): powers the modem, waits for SIM and network, opens the data
+context and performs an HTTP GET (`pio run -t upload`). Adjust `MODEM_TX_PIN`, `MODEM_RX_PIN`, `MODEM_PWRKEY_PIN`
+and `APN` to your circuit. The code ports to any 3.3 V controller: only the serial port and pin definitions change.
 
 AT command reference (Turkish, commands are universal): [docs/AT_KOMUTLARI.md](docs/AT_KOMUTLARI.md).
 

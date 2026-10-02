@@ -15,9 +15,9 @@ Bu depo iki sürümün ortak deposudur:
 | Sürüm | Fark | Teknik doküman |
 | --- | --- | --- |
 | **CAVLI GSM/LTE Devboard** | 4G LTE | [PDF](docs/CAVLI_GSMLTE_teknik_dokuman_v2.pdf) |
-| **CAVLI GSM/LTE Devboard Dahili GPS** | 4G LTE + dahili GPS (GNSS) | [PDF](docs/CAVLI_GSMLTE_GPS_teknik_dokuman_v1.pdf) |
+| **CAVLI GSM/LTE Devboard Dahili GPS** | 4G LTE + dahili GPS (GNSS) | [PDF](docs/CAVLI_GSMLTE_GPS_teknik_dokuman_v2.pdf) |
 
-GPS örneği (`05_GPS_Konum_Okuma`) dışındaki her şey iki sürümde aynıdır.
+GNSS (GPS) komutları dışındaki her şey iki sürümde aynıdır.
 
 ## İçindekiler
 
@@ -25,7 +25,7 @@ GPS örneği (`05_GPS_Konum_Okuma`) dışındaki her şey iki sürümde aynıdı
 - [Pinler ve bağlantı](#pinler-ve-bağlantı)
 - [Güç ve lojik seviye](#güç-ve-lojik-seviye)
 - [Hızlı başlangıç](#hızlı-başlangıç)
-- [Örnekler](#örnekler)
+- [Örnek kod](#örnek-kod)
 - [AT komutları](docs/AT_KOMUTLARI.md)
 - [Sık karşılaşılan sorunlar](#sık-karşılaşılan-sorunlar)
 
@@ -55,17 +55,8 @@ GPS örneği (`05_GPS_Konum_Okuma`) dışındaki her şey iki sürümde aynıdı
 | PKY | Giriş | Bir GPIO: modemi açma/kapatma darbesi |
 | RST | Giriş | (İsteğe bağlı) bir GPIO: aktif-düşük donanım resetı |
 
-Örneklerde kullanılan ESP32 DevKit bağlantısı:
-
-```text
-CAVLI TX  → ESP32 GPIO16      CAVLI PKY → ESP32 GPIO4
-CAVLI RX  ← ESP32 GPIO17      CAVLI GND → ESP32 GND
-CAVLI 3V3 ← harici 3.3 V / 2 A regülatör  (ESP32 kartının 3V3 pini yetmez)
-```
-
-Pinleri her örneğin başındaki **KULLANICI AYARLARI** bölümünden değiştirebilirsiniz. Örneklerde açılışta modem
-`AT`'ye cevap vermezse PKY pinine 500 ms'lik bir darbe gönderilir; modem açılmıyorsa `PKY_BASILI` ve
-`PKY_SERBEST` değerlerini yer değiştirin.
+3V3 hattını denetleyici kartının kendi 3V3 pininden değil, anlık 2 A verebilen ayrı bir regülatörden besleyin.
+Modem açılışta `AT`'ye cevap vermiyorsa PKY pinine kısa bir açma darbesi gönderin.
 
 ## Güç ve lojik seviye
 
@@ -79,9 +70,9 @@ Pinleri her örneğin başındaki **KULLANICI AYARLARI** bölümünden değişti
 ## Hızlı başlangıç
 
 1. Nano SIM'i takın, LTE antenini bağlayın, kartı denetleyicinize bağlayın (yukarıdaki tablo).
-2. Arduino IDE'de ESP32 kart paketini kurun ve [`examples/01_AT_Komut_Terminali`](examples/01_AT_Komut_Terminali)
-   örneğini yükleyin.
-3. Seri Monitörü **115200 baud, Both NL & CR** ile açın ve sırasıyla deneyin:
+2. Kartın TX/RX hattını denetleyicinizin seri portuna ya da 3.3 V'luk bir USB-TTL dönüştürücüyle bilgisayara
+   bağlayın.
+3. Seri terminali **115200 baud, satır sonu CR+LF** ile açın ve sırasıyla deneyin:
 
 ```text
 AT            → OK
@@ -91,23 +82,15 @@ AT+CSQ        → +CSQ: 24,99 (10 ve üzeri iyi)
 AT+CEREG?     → +CEREG: 0,1 (şebekeye kayıtlı)
 ```
 
-4. Ardından internete çıkmak için [`src/main.cpp`](src/main.cpp) (HTTP GET) ya da diğer örneklere geçin.
+4. Ardından internete çıkmak için [`src/main.cpp`](src/main.cpp) örneğine (HTTP GET) geçin. Diğer komutlar:
+   [AT komut başvurusu](docs/AT_KOMUTLARI.md).
 
-## Örnekler
+## Örnek kod
 
-| Örnek | Ne yapar |
-| --- | --- |
-| [`src/main.cpp`](src/main.cpp) | **AR-GE referans örneği** (PlatformIO, ESP32-C3): modemi açar, SIM ve şebekeyi bekler, APN ile veri bağlamını açar ve HTTP GET yapar |
-| [01_AT_Komut_Terminali](examples/01_AT_Komut_Terminali) | Seri Monitörden modeme doğrudan AT komutu gönderin |
-| [02_HTTP_POST_JSON](examples/02_HTTP_POST_JSON) | 60 saniyede bir sunucuya JSON gövdeli HTTP POST gönderir |
-| [03_SMS_Gonder_ve_Al](examples/03_SMS_Gonder_ve_Al) | SMS gönderir; yetkili numaradan gelen SMS komutlarıyla bir çıkışı açar/kapatır |
-| [04_MQTT_Yayinla_Abone_Ol](examples/04_MQTT_Yayinla_Abone_Ol) | Modemin dahili MQTT istemcisiyle telemetri yayınlar, komut konusunu dinler |
-| [05_GPS_Konum_Okuma](examples/05_GPS_Konum_Okuma) | **Dahili GPS sürümü:** konum, hız ve UTC saatini okur, Google Haritalar bağlantısı verir |
-
-`src/main.cpp` PlatformIO projesidir. `pio run -t upload` ile yüklenir. Pin tanımlarını (`MODEM_TX_PIN`,
-`MODEM_RX_PIN`, `MODEM_PWRKEY_PIN`) kendi devrenize göre değiştirin. `examples/` altındaki çizimler Arduino
-IDE'de doğrudan açılır, ek kütüphane gerektirmez. Kod 3.3 V'luk her denetleyiciye taşınabilir: değişen tek şey
-seri port ve pin tanımlarıdır.
+[`src/main.cpp`](src/main.cpp) (PlatformIO, ESP32-C3): modemi açar, SIM ve şebekeyi bekler, APN ile veri bağlamını
+açar ve HTTP GET yapar. `pio run -t upload` ile yüklenir. Pin tanımlarını (`MODEM_TX_PIN`, `MODEM_RX_PIN`,
+`MODEM_PWRKEY_PIN`) ve `APN`'i kendi devrenize göre değiştirin. Kod 3.3 V'luk her denetleyiciye taşınabilir:
+değişen tek şey seri port ve pin tanımlarıdır.
 
 ## Sık karşılaşılan sorunlar
 

@@ -1,9 +1,8 @@
 # Cavli C16QS AT Komutları — Hızlı Başvuru
 
 CAVLI GSM/LTE Devboard ve CAVLI GSM/LTE Devboard Dahili GPS üzerindeki **Cavli C16QS** (LTE Cat 1.bis)
-modülü için en sık kullanılan komutlar. Komutları
-[`01_AT_Komut_Terminali`](../examples/01_AT_Komut_Terminali) örneğiyle Seri Monitörden (115200 baud,
-**Both NL & CR**) doğrudan deneyebilirsiniz.
+modülü için en sık kullanılan komutlar. Komutları herhangi bir seri terminalden (115200 baud,
+satır sonu **CR+LF**) doğrudan deneyebilirsiniz.
 
 Tüm komutlar ve parametreleri için üreticinin **C16QS AT Command Manual** belgesine bakın
 ([Cavli ürün ve çözüm kılavuzları](https://www.cavliwireless.com/resources/product-and-solution-guides)).
@@ -119,8 +118,8 @@ LTE şebekede SMS, operatörün desteğine bağlıdır. C16QS bir veri modülüd
 | `AT+CGPSAGNSS=1` | Destekli GNSS (A-GNSS): veri bağlantısı varken ilk konumu hızlandırır |
 
 RMC cevabındaki ikinci alan `A` ise konum geçerlidir, `V` ise henüz bulunamamıştır. Enlem ve boylam NMEA
-`ddmm.mmmm` biçimindedir; ondalık dereceye çevirme kodu
-[`05_GPS_Konum_Okuma`](../examples/05_GPS_Konum_Okuma) örneğindedir.
+`ddmm.mmmm` biçimindedir; ondalık dereceye çevirmek için: derece + dakika / 60
+(ör. `4100.5000,N` → 41 + 0.5 / 60 = 41.008333°; güney ve batı için eksi).
 
 ## 8. Sık karşılaşılan durumlar
 

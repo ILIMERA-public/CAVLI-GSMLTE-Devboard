@@ -14,7 +14,7 @@ Bu depo iki sürümün ortak deposudur:
 
 | Sürüm | Fark | Teknik doküman |
 | --- | --- | --- |
-| **CAVLI GSM/LTE Devboard** | 4G LTE | [PDF](docs/CAVLI_GSMLTE_teknik_dokuman_v1.pdf) |
+| **CAVLI GSM/LTE Devboard** | 4G LTE | [PDF](docs/CAVLI_GSMLTE_teknik_dokuman_v2.pdf) |
 | **CAVLI GSM/LTE Devboard Dahili GPS** | 4G LTE + dahili GPS (GNSS) | [PDF](docs/CAVLI_GSMLTE_GPS_teknik_dokuman_v1.pdf) |
 
 GPS örneği (`05_GPS_Konum_Okuma`) dışındaki her şey iki sürümde aynıdır.

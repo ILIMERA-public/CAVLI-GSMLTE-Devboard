@@ -15,7 +15,7 @@ Bu depo iki sürümün ortak deposudur:
 | Sürüm | Fark | Teknik doküman |
 | --- | --- | --- |
 | **CAVLI GSM/LTE Devboard** | 4G LTE | [PDF](docs/CAVLI_GSMLTE_teknik_dokuman_v2.pdf) |
-| **CAVLI GSM/LTE Devboard Dahili GPS** | 4G LTE + dahili GPS (GNSS) | [PDF](docs/CAVLI_GSMLTE_GPS_teknik_dokuman_v2.pdf) |
+| **CAVLI GSM/LTE Devboard Dahili GPS** | 4G LTE + dahili GPS (GNSS) | [PDF](docs/CAVLI_GSMLTE_GPS_teknik_dokuman_v3.pdf) |
 
 GNSS (GPS) komutları dışındaki her şey iki sürümde aynıdır.
 
@@ -110,9 +110,9 @@ Daha fazlası: [AT komut başvurusu](docs/AT_KOMUTLARI.md).
 
 | CAVLI GSM/LTE Devboard | Dahili GPS sürümü |
 | --- | --- |
-| ![Ölçüler](docs/images/gsm-lte-dimensions.webp) | ![Ölçüler](docs/images/gsm-lte-gps-dimensions.webp) |
+| ![Ölçüler](docs/images/gsm-lte-dimensions.webp) | ![Ölçüler](docs/images/gsm-lte-gps-dimensions-v2.webp) |
 
-![Dahili GPS sürümü](docs/images/gsm-lte-gps-features-v3.webp)
+![Dahili GPS sürümü](docs/images/gsm-lte-gps-features-v4.webp)
 
 ## Kaynaklar ve destek
 

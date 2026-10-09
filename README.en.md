@@ -14,7 +14,7 @@ This repository covers both versions:
 | Version | Difference | Technical document (Turkish) |
 | --- | --- | --- |
 | **CAVLI GSM/LTE Devboard** | 4G LTE | [PDF](docs/CAVLI_GSMLTE_teknik_dokuman_v2.pdf) |
-| **CAVLI GSM/LTE Devboard with built-in GPS** | 4G LTE + built-in GPS (GNSS) | [PDF](docs/CAVLI_GSMLTE_GPS_teknik_dokuman_v2.pdf) |
+| **CAVLI GSM/LTE Devboard with built-in GPS** | 4G LTE + built-in GPS (GNSS) | [PDF](docs/CAVLI_GSMLTE_GPS_teknik_dokuman_v3.pdf) |
 
 Everything except the GNSS (GPS) commands applies to both versions.
 

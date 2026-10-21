@@ -18,7 +18,7 @@ This repository covers both versions:
 
 Everything except the GNSS (GPS) commands applies to both versions. Because of the shared PCB, both versions have a
 GNSS-labelled connector; on the standard version it is **inactive** and left unconnected, and attaching an antenna
-does not add positioning. No antenna is included in the package.
+does not add positioning. The standard version ships without an antenna.
 
 ## Specifications
 
@@ -31,7 +31,7 @@ does not add positioning. No antenna is included in the package.
 | Power | 3V3 and GND; the 3V3 rail must supply at least **2 A** peak |
 | Logic level | 3.3 V (**not 5 V tolerant**) |
 | SIM | Nano SIM socket (on board) |
-| Antennas | LTE (required), U.FL/IPEX; the GNSS connector is active on the **built-in GPS** version only. No antenna included. |
+| Antennas | LTE (required), U.FL/IPEX; the GNSS connector is active on the **built-in GPS** version only. The standard version ships without an antenna. |
 | Indicators | PWR, NET LEDs |
 | Size | 38 × 41 mm |
 

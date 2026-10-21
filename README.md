@@ -19,7 +19,7 @@ Bu depo iki sürümün ortak deposudur:
 
 GNSS (GPS) komutları dışındaki her şey iki sürümde aynıdır. Ortak PCB nedeniyle iki sürümde de GNSS yazılı bir
 konnektör bulunur; standart sürümde bu port **pasiftir** ve boş bırakılır, anten takılması konum desteği sağlamaz.
-Anten paket içeriğine dahil değildir.
+Standart sürümde anten paket içeriğine dahil değildir.
 
 ## İçindekiler
 
@@ -42,7 +42,7 @@ Anten paket içeriğine dahil değildir.
 | Besleme | 3V3 ve GND; 3V3 hattı anlık en az **2 A** verebilmeli |
 | Lojik seviye | 3.3 V (**5 V toleranslı değil**) |
 | SIM | Nano SIM yuvası (kart üzerinde) |
-| Anten | LTE (zorunlu), U.FL/IPEX; GNSS konnektörü yalnız **Dahili GPS** sürümünde etkin. Anten pakete dahil değildir. |
+| Anten | LTE (zorunlu), U.FL/IPEX; GNSS konnektörü yalnız **Dahili GPS** sürümünde etkin. Standart sürümde anten pakete dahil değildir. |
 | Göstergeler | PWR, NET LED'leri |
 | Boyut | 38 × 41 mm |
 

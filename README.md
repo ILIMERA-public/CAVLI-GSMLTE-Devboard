@@ -6,7 +6,7 @@
 ![CAVLI GSM/LTE Devboard](docs/images/gsm-lte-features-v2.webp)
 
 **Cavli C16QS** modülüyle 4G LTE (Cat 1.bis) hücresel bağlantıyı projenize UART üzerinden ekleyen, 38 × 41 mm
-boyutunda bir geliştirme kartı. Nano SIM yuvası, LTE ve GNSS anten konnektörleri ile PWR/NET LED'leri kart
+boyutunda bir geliştirme kartı. Nano SIM yuvası, LTE anten konnektörü ve PWR/NET LED'leri kart
 üzerinde hazırdır. STM32, ESP32, Arduino, PIC, nRF gibi 3.3 V lojikli her denetleyiciyle AT komutlarıyla
 kullanılır.
 
@@ -14,10 +14,12 @@ Bu depo iki sürümün ortak deposudur:
 
 | Sürüm | Fark | Teknik doküman |
 | --- | --- | --- |
-| **CAVLI GSM/LTE Devboard** | 4G LTE | [PDF](docs/CAVLI_GSMLTE_teknik_dokuman_v2.pdf) |
+| **CAVLI GSM/LTE Devboard** | 4G LTE; GPS/GNSS yok | [PDF](docs/CAVLI_GSMLTE_teknik_dokuman_v3.pdf) |
 | **CAVLI GSM/LTE Devboard Dahili GPS** | 4G LTE + dahili GPS (GNSS) | [PDF](docs/CAVLI_GSMLTE_GPS_teknik_dokuman_v3.pdf) |
 
-GNSS (GPS) komutları dışındaki her şey iki sürümde aynıdır.
+GNSS (GPS) komutları dışındaki her şey iki sürümde aynıdır. Ortak PCB nedeniyle iki sürümde de GNSS yazılı bir
+konnektör bulunur; standart sürümde bu port **pasiftir** ve boş bırakılır, anten takılması konum desteği sağlamaz.
+Anten paket içeriğine dahil değildir.
 
 ## İçindekiler
 
@@ -40,7 +42,7 @@ GNSS (GPS) komutları dışındaki her şey iki sürümde aynıdır.
 | Besleme | 3V3 ve GND; 3V3 hattı anlık en az **2 A** verebilmeli |
 | Lojik seviye | 3.3 V (**5 V toleranslı değil**) |
 | SIM | Nano SIM yuvası (kart üzerinde) |
-| Anten | LTE (zorunlu) ve GNSS, U.FL/IPEX |
+| Anten | LTE (zorunlu), U.FL/IPEX; GNSS konnektörü yalnız **Dahili GPS** sürümünde etkin. Anten pakete dahil değildir. |
 | Göstergeler | PWR, NET LED'leri |
 | Boyut | 38 × 41 mm |
 
@@ -64,8 +66,9 @@ Modem açılışta `AT`'ye cevap vermiyorsa PKY pinine kısa bir açma darbesi g
   verebilen kaliteli bir regülatörden gelmelidir; aksi hâlde modem şebekeden düşer ya da yeniden başlar.
 - **3.3 V lojik:** TX, RX, RST ve PKY pinleri 5 V toleranslı **değildir**. Arduino Uno/Mega gibi 5 V
   denetleyicilerde TX/RX ve kontrol hatlarına mutlaka **lojik seviye dönüştürücü** ekleyin.
-- **Anten:** Karta enerji vermeden önce LTE antenini takın. Konum için GNSS konnektörüne aktif bir GNSS anteni
-  bağlayın.
+- **Anten:** Karta enerji vermeden önce LTE antenini takın: U.FL/IPEX soketli FPC anten doğrudan, harici SMA anten
+  U.FL–SMA ara kabloyla bağlanır. Konum için yalnız **Dahili GPS** sürümünde GNSS konnektörüne aktif bir GNSS anteni
+  bağlayın; standart sürümde GNSS konnektörünü boş bırakın.
 
 ## Hızlı başlangıç
 

@@ -6,17 +6,19 @@
 ![CAVLI GSM/LTE Devboard](docs/images/gsm-lte-features-v2.webp)
 
 A 38 × 41 mm development board that adds 4G LTE (Cat 1.bis) connectivity to your project over UART, built on the
-**Cavli C16QS** module. The Nano SIM socket, LTE and GNSS antenna connectors and PWR/NET LEDs are on the board.
+**Cavli C16QS** module. The Nano SIM socket, the LTE antenna connector and PWR/NET LEDs are on the board.
 It works with any 3.3 V controller (STM32, ESP32, Arduino, PIC, nRF…) through AT commands.
 
 This repository covers both versions:
 
 | Version | Difference | Technical document (Turkish) |
 | --- | --- | --- |
-| **CAVLI GSM/LTE Devboard** | 4G LTE | [PDF](docs/CAVLI_GSMLTE_teknik_dokuman_v2.pdf) |
+| **CAVLI GSM/LTE Devboard** | 4G LTE; no GPS/GNSS | [PDF](docs/CAVLI_GSMLTE_teknik_dokuman_v3.pdf) |
 | **CAVLI GSM/LTE Devboard with built-in GPS** | 4G LTE + built-in GPS (GNSS) | [PDF](docs/CAVLI_GSMLTE_GPS_teknik_dokuman_v3.pdf) |
 
-Everything except the GNSS (GPS) commands applies to both versions.
+Everything except the GNSS (GPS) commands applies to both versions. Because of the shared PCB, both versions have a
+GNSS-labelled connector; on the standard version it is **inactive** and left unconnected, and attaching an antenna
+does not add positioning. No antenna is included in the package.
 
 ## Specifications
 
@@ -29,7 +31,7 @@ Everything except the GNSS (GPS) commands applies to both versions.
 | Power | 3V3 and GND; the 3V3 rail must supply at least **2 A** peak |
 | Logic level | 3.3 V (**not 5 V tolerant**) |
 | SIM | Nano SIM socket (on board) |
-| Antennas | LTE (required) and GNSS, U.FL/IPEX |
+| Antennas | LTE (required), U.FL/IPEX; the GNSS connector is active on the **built-in GPS** version only. No antenna included. |
 | Indicators | PWR, NET LEDs |
 | Size | 38 × 41 mm |
 
@@ -53,7 +55,9 @@ modem does not answer `AT` at start-up, send a short power-on pulse on PKY.
   deliver at least **2 A** peak, otherwise the modem drops off the network or reboots.
 - **3.3 V logic:** TX, RX, RST and PKY are **not** 5 V tolerant. With 5 V controllers (Arduino Uno/Mega) always
   add a **logic level shifter**.
-- **Antennas:** attach the LTE antenna before powering the board. For positioning, connect an active GNSS antenna.
+- **Antennas:** attach the LTE antenna before powering the board: a U.FL/IPEX FPC antenna connects directly, an external
+  SMA antenna via a U.FL–SMA cable. For positioning (**built-in GPS** version only), connect an active GNSS antenna to the
+  GNSS connector; on the standard version leave it unconnected.
 
 ## Quick start
 
